@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>rosevile sucks blog</title>
+  <link>https://example.com</link>
+  <description>updates from the rosevile sucks blog</description>
+  <language>en-us</language>
+  <pubDate>Wed, 24 Apr 2025 16:00:00 -0400</pubDate>
+  <lastBuildDate>Wed, 24 Apr 2025 16:00:00 -0400</lastBuildDate>
+
+  <item>
+    <title>first blog post</title>
+    <link>https://example.com/blog.html#first-post</link>
+    <description>This is an example blog post you can replace.</description>
+    <pubDate>Wed, 24 Apr 2025 12:00:00 -0400</pubDate>
+    <guid>https://example.com/blog.html#first-post</guid>
+  </item>
+
+  <item>
+    <title>another update</title>
+    <link>https://example.com/blog.html#another-update</link>
+    <description>second blog entry in the feed.</description>
+    <pubDate>Tue, 23 Apr 2025 10:00:00 -0400</pubDate>
+    <guid>https://example.com/blog.html#another-update</guid>
+  </item>
+
+</channel>
+</rss>

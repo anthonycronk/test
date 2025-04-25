@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rosevile sucks</title>
   <style>
     body {
       background-color: black;
-      font-family: Helvetica, sans-serif;
+      font-family: Helvetica, Arial, sans-serif;
       margin: 0;
       padding: 0;
       text-transform: lowercase;
       color: white;
+      min-height: 100vh;
     }
     header {
       text-align: center;
-      padding: 40px 20px 10px 20px;
+      padding: 40px 20px 10px;
       font-size: 48px;
       font-weight: bold;
-      color: white;
     }
     nav {
       text-align: center;
-      margin: 10px 0 30px 0;
+      margin: 10px 0 30px;
     }
     nav a {
       display: inline-block;
@@ -31,6 +33,11 @@
       border: 1px solid white;
       padding: 8px 16px;
       background-color: white;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      background-color: black;
+      color: white;
     }
     .main {
       display: flex;
@@ -38,6 +45,7 @@
       align-items: flex-start;
       gap: 40px;
       padding: 0 20px 80px;
+      flex-wrap: wrap;
     }
     .box {
       border: 1px solid white;
@@ -47,6 +55,7 @@
     }
     img {
       max-width: 300px;
+      width: 100%;
       height: auto;
       border: 1px solid white;
     }
@@ -56,6 +65,36 @@
       bottom: 10px;
       font-size: 12px;
       color: white;
+      background-color: rgba(0,0,0,0.7);
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+    @media (max-width: 768px) {
+      header {
+        font-size: 36px;
+      padding: 20px 10px;
+      padding-top: 30px;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      }
+      nav a {
+        margin: 5px;
+        padding: 6px 12px;
+      }
+      .main {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding-bottom: 100px;
+      }
+      .box {
+        max-width: 90%;
+      }
+      img {
+        max-width: 90%;
+      }
     }
   </style>
 </head>
@@ -63,8 +102,8 @@
   <header>rosevile sucks</header>
   <nav>
     <a href="home.html">home</a>
-    <a href="https://linktr.ee/rosevilesucks" target="_blank">music</a>
-    <a href="https://discord.gg/4K9Xwjpy" target="_blank">discord</a>
+    <a href="https://linktr.ee/rosevilesucks" target="_blank" rel="noopener noreferrer">music</a>
+    <a href="https://discord.gg/4K9Xwjpy" target="_blank" rel="noopener noreferrer">discord</a>
   </nav>
   <div class="main">
     <div class="box">
@@ -78,22 +117,40 @@
   <div class="footer">
     <div id="datetime"></div>
     <div id="weather">loading weather...</div>
-    <script>
-      function updateDateTime() {
-        const now = new Date();
-        document.getElementById('datetime').innerText = now.toLocaleString();
-      }
-      updateDateTime();
-      setInterval(updateDateTime, 1000);
-
-      async function fetchWeather() {
-        const res = await fetch('https://wttr.in/?format=%t+%c');
-        const text = await res.text();
-        document.getElementById('weather').innerText = text;
-      }
-      fetchWeather();
-    </script>
   </div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const options = { 
+        weekday: 'short', 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      document.getElementById('datetime').innerText = now.toLocaleDateString('en-US', options);
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    async function fetchWeather() {
+      try {
+        const res = await fetch('https://wttr.in/?format=%t+%c');
+        if (res.ok) {
+          const text = await res.text();
+          document.getElementById('weather').innerText = text;
+        } else {
+          document.getElementById('weather').innerText = "weather unavailable";
+        }
+      } catch (error) {
+        document.getElementById('weather').innerText = "weather error";
+        console.error('Weather fetch error:', error);
+      }
+    }
+    fetchWeather();
+  </script>
 </body>
 </html>
-

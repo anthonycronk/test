@@ -182,6 +182,26 @@
       background-color: #2E7D32;
     }
 
+    /* Desktop View Button */
+    .desktop-view-button {
+      display: none;
+      width: 90%;
+      margin: 20px auto;
+      padding: 12px;
+      text-align: center;
+      background-color: white;
+      color: black;
+      border: var(--border-white);
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .desktop-view-button:hover {
+      background-color: black;
+      color: white;
+    }
+
     /* Mobile Styles (under 768px) */
     @media (max-width: 768px) {
       :root {
@@ -239,6 +259,10 @@
         margin-left: -9px;
         margin-right: -9px;
       }
+      
+      .desktop-view-button {
+        display: block;
+      }
     }
 
     /* Very small mobile devices */
@@ -261,6 +285,13 @@
         width: 15px;
         margin-left: -7.5px;
         margin-right: -7.5px;
+      }
+    }
+
+    /* Hide desktop button on desktop */
+    @media (min-width: 769px) {
+      .desktop-view-button {
+        display: none !important;
       }
     }
   </style>
@@ -460,16 +491,51 @@
       }
     });
 
-    // Mobile detection for additional adjustments
+    // Desktop view toggle functionality
+    function toggleDesktopView() {
+      const viewportMeta = document.querySelector('meta[name="viewport"]');
+      if (viewportMeta.content.includes('width=device-width')) {
+        // Switch to desktop view
+        viewportMeta.content = 'width=1200';
+        localStorage.setItem('desktopView', 'true');
+      } else {
+        // Switch back to mobile view
+        viewportMeta.content = 'width=device-width, initial-scale=1.0';
+        localStorage.removeItem('desktopView');
+      }
+    }
+
+    // Mobile detection and button management
     function checkMobile() {
       if (window.innerWidth <= 768) {
         document.body.classList.add('mobile');
+        // Add button if not already present
+        if (!document.querySelector('.desktop-view-button')) {
+          const button = document.createElement('a');
+          button.className = 'desktop-view-button';
+          button.textContent = 'desktop view';
+          button.onclick = toggleDesktopView;
+          document.querySelector('.main').appendChild(button);
+        }
       } else {
         document.body.classList.remove('mobile');
+        // Remove button if present
+        const button = document.querySelector('.desktop-view-button');
+        if (button) button.remove();
       }
     }
+
+    // Check for saved preference on load
+    document.addEventListener('DOMContentLoaded', function() {
+      if (localStorage.getItem('desktopView') === 'true') {
+        document.querySelector('meta[name="viewport"]').content = 'width=1200';
+      }
+      
+      // Initial mobile check
+      checkMobile();
+    });
+
     window.addEventListener('resize', checkMobile);
-    checkMobile();
   </script>
 </body>
 </html>

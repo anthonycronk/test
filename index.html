@@ -66,14 +66,17 @@
       bottom: 10px;
       font-size: 12px;
       color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
-    .weather-widget {
-      display: inline-block;
+    .info-box {
       border: 1px solid white;
       padding: 8px 16px;
       background-color: black;
       font-weight: bold;
       margin-top: 5px;
+      text-align: center;
     }
     .youtube-container {
       width: 100%;
@@ -117,6 +120,14 @@
       .youtube-container iframe {
         height: 200px;
       }
+      .footer {
+        right: 10px;
+        bottom: 5px;
+      }
+      .info-box {
+        padding: 6px 12px;
+        font-size: 11px;
+      }
     }
   </style>
 </head>
@@ -136,14 +147,17 @@
         </p>
       </div>
       <div class="youtube-container">
-        <iframe src="https://youtu.be/dfb0SEQA3d8?si=svVTDXdx_q3Hr8Lv" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- Replace VIDEO_ID with your actual YouTube video ID -->
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=0&fs=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
     <img src="rosevile_sign.jpeg" alt="rosevile sucks sign">
   </div>
   <div class="footer">
-    <div id="datetime"></div>
-    <div id="weather" class="weather-widget">loading weather...</div>
+    <div class="info-box">
+      <div id="datetime"></div>
+      <div id="weather"></div>
+    </div>
   </div>
 
   <script>

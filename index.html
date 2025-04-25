@@ -1,21 +1,23 @@
-ll
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>rosevile sucks</title>
   <style>
     body {
-      background-color: #f6f1d3;
+      background-color: black;
       font-family: Helvetica, sans-serif;
       margin: 0;
       padding: 0;
       text-transform: lowercase;
+      color: white;
     }
     header {
       text-align: center;
       padding: 40px 20px 10px 20px;
       font-size: 48px;
       font-weight: bold;
+      color: white;
     }
     nav {
       text-align: center;
@@ -27,72 +29,55 @@ ll
       text-decoration: none;
       font-weight: bold;
       color: black;
-      border: 1px solid black;
+      border: 1px solid white;
       padding: 8px 16px;
       background-color: white;
     }
     .main {
       display: flex;
       justify-content: center;
+      align-items: flex-start;
       gap: 40px;
       padding: 0 20px 80px;
     }
     .box {
-      border: 1px solid black;
+      border: 1px solid white;
       padding: 20px;
-      background-color: white;
+      background-color: #111;
       max-width: 400px;
+    }
+    img {
+      max-width: 300px;
+      height: auto;
+      border: 1px solid white;
     }
     .footer {
       position: fixed;
       right: 20px;
       bottom: 10px;
       font-size: 12px;
+      color: white;
     }
   </style>
-<link rel="alternate" type="application/rss+xml" title="rosevile sucks blog feed" href="rss.xml" />
 </head>
 <body>
   <header>rosevile sucks</header>
   <nav>
     <a href="home.html">home</a>
-    <a href="blog.html">blog</a>
-    <a href="merch.html">merch</a>
+    <a href="music.html">music</a>
     <a href="https://discord.gg/jD9KdrrzBR" target="_blank">discord</a>
-    <a href="about.html">about</a>
   </nav>
   <div class="main">
     <div class="box">
       <h3>whats on my mind</h3>
       <p>
-        Hello World em ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
         Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
         Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros
         et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
       </p>
-
-      <div style="margin-top: 40px;">
-        <h3>leave a comment</h3>
-        <form id="commentForm">
-          <input type="text" id="name" placeholder="your name" style="width: 100%; padding: 8px; margin-bottom: 10px;" required><br>
-          <textarea id="comment" placeholder="your comment" style="width: 100%; padding: 8px;" rows="4" required></textarea><br>
-          <button type="submit" style="margin-top: 10px; padding: 8px 16px;">post comment</button>
-        </form>
-        <div id="commentSection" style="margin-top: 20px;"></div>
-      </div>
-
     </div>
-    <div class="box">
-      <h3>things i like</h3>
-      <ul>
-        <li>album recs</li>
-        <li>all about recording</li>
-        <li>blog archive</li>
-        <li>my car projects</li>
-        <li>my friends</li>
-        <li>pics</li>
-      </ul>
-    </div>
+    <img src="rosevile_sign.jpeg" alt="rosevile sucks sign">
   </div>
   <div class="footer">
     <div id="datetime"></div>
@@ -113,20 +98,5 @@ ll
       fetchWeather();
     </script>
   </div>
-
-  <script>
-    document.getElementById('commentForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const comment = document.getElementById('comment').value.trim();
-      if (name && comment) {
-        const commentBox = document.createElement('div');
-        commentBox.style.marginBottom = '20px';
-        commentBox.innerHTML = '<strong>' + name + '</strong><br>' + comment;
-        document.getElementById('commentSection').prepend(commentBox);
-        document.getElementById('commentForm').reset();
-      }
-    });
-  </script>
 </body>
 </html>

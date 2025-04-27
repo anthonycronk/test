@@ -1,3 +1,19 @@
+<?php
+/**
+ * Logging functionality - saves to log.txt
+ */
+$logFile = 'log.txt';
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$date = date('Y-m-d H:i:s');
+$userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';
+$referrer = $_SERVER['HTTP_REFERER'] ?? 'direct';
+
+$logEntry = "[$date] IP: $ip | Agent: $userAgent | From: $referrer\n";
+
+// Write to log file (silently fail if it doesn't work)
+@file_put_contents($logFile, $logEntry, FILE_APPEND);
+@chmod($logFile, 0644);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
